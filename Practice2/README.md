@@ -5,5 +5,3 @@
 ![StartScreen](https://github.com/ysw990312/AndroidPrograms/blob/master/Practice2/picture/StartScreen.png)
 ## 线性布局
 按下“线性布局”按钮，跳转到线性布局构建的界面中。构建实例的注意点：</br>
-1. 文本视图的边框：调用Practice2\app\src\main\res\drawable下的textview_border.xml文件
-2. 
