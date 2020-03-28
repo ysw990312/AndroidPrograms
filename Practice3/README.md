@@ -153,8 +153,153 @@
 ```
 5. 效果图如下：</br>
 ![xml菜单1](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Xml1.png)</br>
-![xml菜单1](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Xml2.png)</br>
-![xml菜单1](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Xml3.png)</br>
-![xml菜单1](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Xml4.png)
+![xml菜单2](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Xml2.png)</br>
+![xml菜单3](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Xml3.png)</br>
+![xml菜单4](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Xml4.png)
 ## 上下文菜单样例
+该样例的操作步骤如下：
+1. 在activity_action_context.xml下，定义该页面的布局为线性布局，并定义ListView组件来容纳接下来的视图，需要注意的一点是根据需要来定义该组件的选择模式，其代码为：`android:choiceMode="multipleChoice"`，这边采用的是多选
+2. 在row_list_item.xml下，定义每行的布局为线性布局，并定义ImageView与TextView组件，其代码如下：
+```
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_gravity="center_vertical"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="17sp"
+        android:layout_marginLeft="10dp"
+        android:text="Test"
+        android:textStyle="bold" />
+
+</LinearLayout>
+```
+3. 在ActionContextDemo.java下，继承**ListActivity**；实现**AbsListView.MultiChoiceModeListener接口**，并使用**setMultiChoiceModeListener()**为视图组设置该接口，使用 CHOICE_MODE_MULTIPLE_MODAL 参数调用 setChoiceMode()。其关键代码如下：
+```
+        getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+
+        getListView().setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+
+            private int nr = 0;
+
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                return false;
+            }
+
+            public void onDestroyActionMode(ActionMode mode) {
+                mAdapter.clearSelection();
+            }
+
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                nr = 0;
+                MenuInflater inflater = getMenuInflater();
+                inflater.inflate(R.menu.contextual_menu, menu);
+                return true;
+            }
+
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.item_delete:
+                        nr = 0;
+                        mAdapter.clearSelection();
+                        mode.finish();
+                }
+                return false;
+            }
+
+            public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+                if (checked) {
+                    nr++;
+                    mAdapter.setNewSelection(position, checked);
+                }else {
+                    nr--;
+                    mAdapter.removeSelection(position);
+                }
+                mode.setTitle(nr + " selected");
+
+            }
+        });
+
+        getListView().setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int position, long arg3) {
+                getListView().setItemChecked(position, !mAdapter.isPositionChecked(position));
+                return false;
+            }
+        });
+```
+4. 效果图如下：</br>
+![上下文操作](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Context.png)
 ## 进度条样例
+该样例的操作步骤如下：
+1. 在activity_process_bar.xml下，定义该页面的布局为相对布局，并定义进度条，其代码如下：
+```
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="16dp"
+    tools:context=".ProcessBarDemo">
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/process_bar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/process_bar"
+        android:text="@string/tv_process_bar"
+        />
+
+</RelativeLayout>
+```
+2. 在ProcessBarDemo.java下，需要启动后台线程进行操作，并进行进度条的时间设置，其代码如下：
+```
+        //在后台线程中启动冗长的操作
+        new Thread(new Runnable() {
+            public void run() {
+                while (mProgressStatus < 100) {
+                    mProgressStatus = doWork();
+                    //更新进度条
+                    mHandler.post(new Runnable() {
+                        public void run() {
+                            mProgress.setProgress(mProgressStatus);
+                        }
+                    });
+                }
+            }
+        }).start();
+```
+```
+    private int doWork() {
+        data[hasData++] = (int) (Math.random() * 100);
+        try {
+            Thread.sleep(100);
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return hasData;
+    }
+```
+3. 效果图如下：</br>
+![进度条1](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Bar1.png)</br>
+![进度条2](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Bar2.png)
