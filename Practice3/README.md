@@ -35,8 +35,30 @@
 该样例的设计步骤如下：
 1. 在activity_custom_dialog.xml下，定义该页面的布局为相对布局，并为此添加一个按钮来调出对话框
 2. 在custom_dialog.xml下，使用线性布局来构造对话框，并定义弹框图片、账号输入框以及密码输入框，这里面关键的部分代码如下：</br>
-账号输入框的输入类型：`android:inputType="text"`
+账号输入框的输入类型：`android:inputType="text"`</br>
 密码输入框的输入类型：`android:inputType="textPassword"`
+3. 在CustomDialogDemo.java下，**通过调用getLayoutInflater()获取LayoutInflater实例，并利用LayoutInflater的inflate()方法从自定义布局文件中加载对话框的布局**，从而实现自定义对话框，其关键代码如下：
+```
+        builder.setView(inflater.inflate(R.layout.custom_dialog, null))
+                //添加操作项目
+                .setPositiveButton(R.string.sign_in, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //实现登录账户功能（不去实现），设为空
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+        builder.create();
+        builder.show();
+```
+5. 效果如下：</br>
+![自定义对话框1](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Dialog1.png)</br>
+![自定义对话框2](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Dialog2.png)
 ## XML菜单样例
 ## 上下文菜单样例
 ## 进度条样例
