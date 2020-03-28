@@ -56,9 +56,105 @@
         builder.create();
         builder.show();
 ```
-5. 效果如下：</br>
+5. 效果图如下：</br>
 ![自定义对话框1](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Dialog1.png)</br>
 ![自定义对话框2](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Dialog2.png)
 ## XML菜单样例
+该样例的设计步骤如下：
+1. 在activity_xml_menu.xml下，定义页面的布局为相对布局，并定义一个测试文本框
+2. 在menu/menu_setting.xml下，定义菜单栏，包括字号、颜色等，该配置文件的代码如下：
+```
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/menu_Font">
+        <menu>
+            <item
+                android:id="@+id/menu_font_small"
+                android:title="@string/menu_font_small"/>
+            <item
+                android:id="@+id/menu_font_middle"
+                android:title="@string/menu_font_middle"/>
+            <item
+                android:id="@+id/menu_font_big"
+                android:title="@string/menu_font_big"/>
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/menu_normal"
+        android:title="@string/menu_Normal"
+        />
+
+    <item android:title="@string/menu_Color">
+        <menu>
+            <item
+                android:id="@+id/menu_color_black"
+                android:title="@string/menu_color_black"/>
+            <item
+                android:id="@+id/menu_color_red"
+                android:title="@string/menu_color_red"/>
+        </menu>
+    </item>
+
+</menu>
+```
+3. 在XmlMenuDemo.java下，一定要去**继承AppCompatActivity**，要不然右上角的菜单栏显示不出来；接下来就是创建菜单，并对菜单中的操作项定义相关的操作事件，其代码如下：
+```
+    /* 创建操作菜单 */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        this.getMenuInflater().inflate(R.menu.menu_setting, menu);
+        return true;
+    }
+
+    /* 设置选中操作项对应事件 */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_font_small:
+                textView.setTextSize(10*2);
+                break;
+            case R.id.menu_font_middle:
+                textView.setTextSize(16*2);
+                break;
+            case R.id.menu_font_big:
+                textView.setTextSize(20*2);
+                break;
+            case R.id.menu_normal:
+                Toast.makeText(XmlMenuDemo.this, "这是普通菜单项", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.menu_color_red:
+                textView.setTextColor(Color.RED);
+                break;
+            case R.id.menu_color_black:
+                textView.setTextColor(Color.BLACK);
+                break;
+        }
+        return true;
+    }
+```
+4. **PS：假如继承了AppCompatActivity，还显示不出来菜单栏则调用如下的代码即可：**
+```
+    /* 假如右上角的菜单栏不显示就调用这个方法 */
+    private void makeActionOverflowMenuShown() {
+        //devices with hardware menu button (e.g. Samsung Note) don't show action overflow menu
+        try {
+            ViewConfiguration config = ViewConfiguration.get(this);
+            Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+            if (menuKeyField != null) {
+                menuKeyField.setAccessible(true);
+                menuKeyField.setBoolean(config, false);
+            }
+        } catch (Exception e) {
+
+        }
+    }
+```
+5. 效果图如下：</br>
+![xml菜单1](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Xml1.png)</br>
+![xml菜单1](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Xml2.png)</br>
+![xml菜单1](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Xml3.png)</br>
+![xml菜单1](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Xml4.png)
 ## 上下文菜单样例
 ## 进度条样例
