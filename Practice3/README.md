@@ -28,6 +28,9 @@
             }
         });
 ```
+5. 效果图如下：</br>
+![简单适配器1](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Simple1.png)</br>
+![简单适配器2](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Simple2.png)
 ## 自定义对话框样例
 ## XML菜单样例
 ## 上下文菜单样例
