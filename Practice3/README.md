@@ -32,6 +32,11 @@
 ![简单适配器1](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Simple1.png)</br>
 ![简单适配器2](https://github.com/ysw990312/AndroidPrograms/blob/96cfd7a54102a20fa090b22a36afa0d534c1c795/Practice3/Picture/Simple2.png)
 ## 自定义对话框样例
+该样例的设计步骤如下：
+1. 在activity_custom_dialog.xml下，定义该页面的布局为相对布局，并为此添加一个按钮来调出对话框
+2. 在custom_dialog.xml下，使用线性布局来构造对话框，并定义弹框图片、账号输入框以及密码输入框，这里面关键的部分代码如下：</br>
+账号输入框的输入类型：`android:inputType="text"`
+密码输入框的输入类型：`android:inputType="textPassword"`
 ## XML菜单样例
 ## 上下文菜单样例
 ## 进度条样例
