@@ -11,11 +11,11 @@
 ![ChooseBrowser](https://github.com/ysw990312/AndroidPrograms/blob/master/Practice4/Picture/ChooseBrowser.png)
 4. MainActivity.java该应用的主要代码为：
 ```
-                Intent intent=new Intent();
-                intent.setAction(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(urlHead+urlText.getText().toString()));
-                //Intent choose = Intent.createChooser(intent,"选择一个浏览器");
-                startActivity(intent);
+  Intent intent=new Intent();
+  intent.setAction(Intent.ACTION_VIEW);
+  intent.setData(Uri.parse(urlHead+urlText.getText().toString()));
+  //Intent choose = Intent.createChooser(intent,"选择一个浏览器");
+  startActivity(intent);
 ```
 ## MyBrowser应用
 1. 主要由activity_main.xml与MainActivity.java这两部分构成
