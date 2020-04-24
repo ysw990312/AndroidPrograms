@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ImplicitintentDemo</string>
+    <string name="hint_input_url">请输入需要访问的网址</string>
+    <string name="btn_browser_info">访问</string>
+</resources>
