@@ -7,7 +7,7 @@
 1. 该应用的构成很简单，主要由activity_main.xml与MainActivity.java这两部分构成
 2. activity_main.xml该布局文件主要用线性布局来进行相应的布局，并添加一个EditText与一个Button组件，该页面的展示如下图：</br>
 ![ImplicitintentDemoScreen](https://github.com/ysw990312/AndroidPrograms/blob/master/Practice4/Picture/ImplicitintentDemoScreen.png)
-3. 输入**www.bilibili.com**，最后点击**访问**，就会要求你选择相应的浏览器进行一个网址的访问，如下图所示：</br>
+3. 输入**相应的网址**，最后点击**访问**，就会要求你选择相应的浏览器进行一个网址的访问，如下图所示：</br>
 ![ChooseBrowser](https://github.com/ysw990312/AndroidPrograms/blob/master/Practice4/Picture/ChooseBrowser.png)
 4. MainActivity.java该应用的主要代码为：
 ```
