@@ -25,8 +25,8 @@
         values.put(NotePad.Notes.COLUMN_NAME_MODIFICATION_DATE, dateTime);
 ```
 ### 运行结果
-!(增加时间戳1)[https://github.com/ysw990312/AndroidPrograms/blob/master/NotePad-master/Pictures/%E5%A2%9E%E5%8A%A0%E6%97%B6%E9%97%B4%E6%88%B31.png]<br />
-!(增加时间戳2)[https://github.com/ysw990312/AndroidPrograms/blob/master/NotePad-master/Pictures/%E5%A2%9E%E5%8A%A0%E6%97%B6%E9%97%B4%E6%88%B32.png]
+[增加时间戳1](https://github.com/ysw990312/AndroidPrograms/blob/master/NotePad-master/Pictures/%E5%A2%9E%E5%8A%A0%E6%97%B6%E9%97%B4%E6%88%B31.png)<br />
+[增加时间戳2](https://github.com/ysw990312/AndroidPrograms/blob/master/NotePad-master/Pictures/%E5%A2%9E%E5%8A%A0%E6%97%B6%E9%97%B4%E6%88%B32.png)
 ## 添加笔记查询功能
 ### 需求分析
 1. 只需在lists_optioin_menu.xml菜单文件中添加搜索菜单即可，关键代码如下：
@@ -106,7 +106,7 @@ public boolean onQueryTextChange(String newText) {
     }
 ```
 ### 运行结果
-!(搜索功能1)[https://github.com/ysw990312/AndroidPrograms/blob/master/NotePad-master/Pictures/%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD1.png]<br />
-!(搜索功能2)[https://github.com/ysw990312/AndroidPrograms/blob/master/NotePad-master/Pictures/%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD2.png]<br />
-!(搜索功能3)[https://github.com/ysw990312/AndroidPrograms/blob/master/NotePad-master/Pictures/%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD3.png]<br />
-!(搜索功能4)[https://github.com/ysw990312/AndroidPrograms/blob/master/NotePad-master/Pictures/%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD4.png]
+[搜索功能1](https://github.com/ysw990312/AndroidPrograms/blob/master/NotePad-master/Pictures/%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD1.png)<br />
+[搜索功能2](https://github.com/ysw990312/AndroidPrograms/blob/master/NotePad-master/Pictures/%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD2.png)<br />
+[搜索功能3](https://github.com/ysw990312/AndroidPrograms/blob/master/NotePad-master/Pictures/%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD3.png)<br />
+[搜索功能4](https://github.com/ysw990312/AndroidPrograms/blob/master/NotePad-master/Pictures/%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD4.png)
